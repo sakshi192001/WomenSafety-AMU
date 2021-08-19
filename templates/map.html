@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+<form id="form-cord" method="POST">
+    <input id="coord" type="hidden" name="coord" value="#">
+    <input type="button" onclick="getLocation()" value="Submit form">
+</form>
+<p>Click the button to get your coordinates.</p>
+
+<!-- <button onclick="getLocation()">Try It</button> -->
+
+<p id="demo"></p>
+
+<script>
+var x = document.getElementById("demo");
+var lat,lng;
+navigator.geolocation.getCurrentPosition(showPosition);
+
+function getLocation() {
+  if (navigator.geolocation) {
+    
+    console.log("f")
+    
+    document.getElementById("form-cord").submit();
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+    lat =position.coords.latitude;
+    lng = position.coords.longitude;
+    document.getElementById("coord").value ="https://maps.google.com/maps?q="+lat+","+lng;
+  x.innerHTML = "Latitude: " + position.coords.latitude + 
+  "<br>Longitude: " + position.coords.longitude;
+  console.log(lat)
+}
+</script>
+
+</body>
+</html>
